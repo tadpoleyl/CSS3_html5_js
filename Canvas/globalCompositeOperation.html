@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        body {
+            height: 1000px;
+        }
+    </style>
+
+</head>
+<body>
+    <div style="position: relative; width: 300px; height: 100px;">
+        <canvas id="rect" width="300" height="100" style="position:absolute;left:0;top:0;"></canvas>
+        <canvas id="arc" width="300" height="100" style="position:absolute;left:0;top:0;"></canvas>
+    </div>
+    <script type="text/javascript">
+        function WipeImg(rect, arc) {
+            var canvas = document.getElementById(rect);
+            var context = canvas.getContext("2d");
+            var img = new Image();
+            img.onload = function () {
+                context.drawImage(this, 0, 0, canvas.width, canvas.height);
+            }
+            img.src = '../js_面向对象/image/bdlogo.gif';
+
+            var canvas2 = document.getElementById(arc);
+            var context2 = canvas2.getContext("2d");
+            context2.fillStyle = "#ccc";
+            context2.fillRect(0, 0, 300, 100);
+            context2.fill();
+            context2.globalCompositeOperation = "destination-out";
+            var isMousedown = false;
+            canvas2.addEventListener("mousedown", function (e) {
+                isMousedown = true;
+                var docEle = document.documentElement;
+                var x = (e.clientX) + docEle.scrollLeft - docEle.clientLeft;
+                var y = (e.clientY) + docEle.scrollTop - docEle.clientTop;
+                context2.fillStyle = "#fff";
+                context2.beginPath();
+                context2.arc(x, y, 30, 0, Math.PI * 2, true);
+                context2.closePath();
+                context2.fill();
+                canvas2.addEventListener("mousemove", function (e) {
+                    if (!isMousedown) return false;
+                    var docEle = document.documentElement;
+                    var x = (e.clientX)  + docEle.scrollLeft - docEle.clientLeft;
+                    var y = (e.clientY) + docEle.scrollTop - docEle.clientTop;
+                    //var radgrad = context2.createRadialGradient(x, y, 0, x, y, 30);
+                    //radgrad.addColorStop(0, 'rgba(0,0,0,0.6)');
+                    //radgrad.addColorStop(1, 'rgba(255,255,255,0)');
+                    context2.fillStyle = "#fff";
+                    context2.beginPath();
+                    context2.arc(x, y, 30, 0, Math.PI * 2, true);
+                    context2.closePath();
+                    context2.fill();
+                }, false);
+                canvas2.addEventListener("mouseup", function (e) {
+                    isMousedown = false;
+                }, false);
+            }, false);
+        }
+        WipeImg("rect", "arc");
+    </script>
+</body>
+</html>

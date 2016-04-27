@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400" style="background-color:#ccc;"></canvas>
+    <script src="../js/createjs/easeljs-NEXT.combined.js"></script>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var stage = new createjs.Stage(canvas);//创建舞台(画布)
+        var shape2 = new createjs.Shape();
+        ///
+        shape2.graphics.beginFill("pink").beginStroke("#fff").setStrokeStyle(4).moveTo(0, 0).lineTo(canvas.width, 0).lineTo(canvas.width, canvas.height * .4).lineTo(0, canvas.height * .6).closePath();
+        stage.addChild(shape2);
+        stage.update();
+        var img = new Image();
+        img.onload = function () {
+            var bmp = new createjs.Bitmap(this);
+            stage.addChild(bmp);
+            bmp.mask = shape2;
+            stage.update();
+            bmp.addEventListener("mousedown", function (e) {
+                var disX = e.stageX - bmp.x;
+                var disY = e.stageY - bmp.y;
+                document.onmousemove = function (e) {
+                    bmp.x = e.clientX - disX;
+                    bmp.y = e.clientY - disY;
+                    stage.update();
+                };
+                document.onmouseup = function (e) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            }, false);
+        }
+        img.src = "../img/10.jpg";
+        ///
+        var shape3 = new createjs.Shape();
+        shape3.graphics.beginFill("yellow").beginStroke("#fff").setStrokeStyle(4).moveTo(0, canvas.height * .6).lineTo(canvas.width, canvas.height * .4).lineTo(canvas.width,canvas.height).lineTo(0,canvas.height).closePath();
+        stage.addChild(shape3);
+        stage.update();
+        var img2 = new Image();
+        img2.onload = function () {
+            var bmp = new createjs.Bitmap(this);
+            stage.addChild(bmp, 0);
+            bmp.mask = shape3;
+            stage.update();
+            bmp.addEventListener("mousedown", function (e) {
+                var disX = e.stageX - bmp.x;
+                var disY = e.stageY - bmp.y;
+                document.onmousemove = function (e) {
+                    bmp.x = e.clientX - disX;
+                    bmp.y = e.clientY - disY;
+                    stage.update();
+                };
+                document.onmouseup = function (e) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            }, false);
+        };
+        img2.src = "../img/20.jpg";
+
+        //createjs.Ticker.addEventListener('tick', function (e) {
+        //    img.x += 10;
+        //    stage.update();
+        //});
+    </script>
+</body>
+</html>

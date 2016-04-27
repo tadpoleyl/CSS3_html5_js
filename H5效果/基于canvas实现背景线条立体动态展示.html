@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body {margin:0;padding:0;font: 1em/150% "微软雅黑",Arial, Helvetica, sans-serif;}
+        #main {
+            background: #bb0000 linear-gradient(to right bottom, rgba(13, 70, 128, 1), rgba(5, 20, 50, 1)) repeat scroll 0 0;
+            overflow: hidden;
+            position: relative;
+            width:800px;
+            height:100px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<!-- HTML代码片段中请勿添加<body>标签 //-->
+
+<div id="main">
+  <div id="particles-js" style="width:100%;height:100%;">
+  </div>
+</div>
+
+
+<!-- 推荐开源CDN来选取需引用的外部JS //-->
+<script src="../js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="../js/particles.js"></script>
+<script type="text/javascript">
+particlesJS('particles-js', {
+  particles: {
+    color: '#5ce55c',//#fff
+    shape: 'edge', // "circle", "edge" or "triangle"
+    opacity: 1,
+    size: 1,
+    size_random: true,
+    nb: 55,
+    line_linked: {
+      enable_auto: true,
+      distance: 55,
+      color: '#24b33c',//#fff
+      opacity: 1,
+      width: 1,
+      condensed_mode: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 600
+      }
+    },
+    anim: {
+      enable: true,
+      speed: 5
+    }
+  },
+  interactivity: {
+    enable: true,
+    mouse: {
+      distance: 300
+    },
+    detect_on: 'canvas', // "canvas" or "window"
+    mode: 'grab',
+    line_linked: {
+      opacity: .6
+    },
+    events: {
+      onclick: {
+        enable: false,
+        mode: 'push', // "push" or "remove"
+        nb: 4
+      }
+    }
+  },
+  /* Retina Display Support */
+  retina_detect: true
+});
+</script>
+</body>
+</html>

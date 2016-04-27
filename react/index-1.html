@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script src="js/react.js"></script>
+<script src="js/react-dom.js"></script>
+<script>
+    var ExampApplication=React.createClass({
+        render:function(){
+            var elapsed=Math.round(this.props.elapsed/100);
+            var seconds=elapsed/10+(elapsed%10?"":".0");
+            var message="React running "+seconds+" seconds.";
+            return React.DOM.p(null,message);
+        }
+    });
+    var ExampApplicationFactory=React.createFactory(ExampApplication);
+    var start=new Date().getTime();
+    setInterval(function(){
+        ReactDOM.render(ExampApplicationFactory({
+            elapsed:new Date().getTime()-start
+        }),document.getElementById("div1"));
+    },50);
+</script>
+</body>
+</html>

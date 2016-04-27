@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            text-align:center;
+        }
+        #canvas{
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+    <script type="text/javascript">
+        var can=document.getElementById("canvas");
+        var ctx=can.getContext("2d");
+
+        var r=10,x=700,y=100,g= 2,vx= -2,vy=-5;
+
+        arcBall(x,y);
+
+      var time=  setInterval(function(){
+            x+=vx;
+            y+=vy;
+            vy+=g;
+            if(y>=can.height-r) {
+                y=can.height-r;
+                vy=-vy*.75;
+            }
+            arcBall(x,y);
+        },50);
+
+        function arcBall(x,y){
+            ctx.clearRect(0,0,can.width,can.height);
+            ctx.beginPath();
+            ctx.arc(x,y,r,0, 2*Math.PI,true);
+            ctx.fillStyle="red";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            text-align:center;
+            background-color:#000000;
+        }
+        #canvas{
+            border:1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="640" height="600"></canvas>
+<input type="range" id="scale" style="display:block;margin:20px auto;width:600px;" min="0.5" max="9.0" step="0.01" value="1.0"/>
+<script type="text/javascript">
+    var can=document.getElementById("canvas");
+    var ctx=can.getContext("2d");
+
+    var scale=document.getElementById("scale");
+
+    var rectW=200;
+    var rectH=200;
+
+    var img=new Image();
+    img.src="img/psb1.jpg";
+
+    img.onload=function(){
+        scaleImg(scale.value);
+        scale.onmousemove=function(){
+            scaleImg(scale.value);
+        };
+    };
+    can.addEventListener("mousedown",function(e){
+        drawRect(e.clientX-can.offsetLeft, e.clientY-can.offsetTop);
+    });
+    can.addEventListener("mousemove",function(e){
+        drawRect(e.clientX-can.offsetLeft, e.clientY-can.offsetTop);
+    },false);
+    can.addEventListener("mouseout",function(e) {
+    },false);
+    can.addEventListener("mouseup",function(e) {
+    },false);
+
+
+    function drawRect(x,y) {
+        scaleImg(scale.value);
+        ctx.beginPath();
+        ctx.rect(x - rectW / 2, y - rectH / 2, rectW, rectH);
+        ctx.drawImage(img,x - rectW/2 , y - rectH/2 ,rectW/2,rectH/2,x - rectW / 2, y - rectH / 2,rectW,rectH);
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+
+    function scaleImg(scale){
+        var imgWidth=can.width*scale;
+        var imgHeight=can.height*scale;
+        var sx=can.width/2-imgWidth/2;
+        var sy=can.height/2-imgHeight/2;
+        ctx.clearRect(0,0,can.width,can.height);
+//        ctx.drawImage( img , sx , sy , imgWidth , imgHeight );
+        ctx.drawImage(img,sx,sy,imgWidth,imgHeight,0,0,can.width,can.height);
+    }
+
+</script>
+</body>
+</html>

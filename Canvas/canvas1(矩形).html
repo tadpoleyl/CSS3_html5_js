@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <style type="text/css">
+
+    </style>
+    
+</head>
+<body>
+    <canvas id="ellipse" width="600" height="600"></canvas>
+    <script type="text/javascript">
+    function canvas(id) {
+        var canvas = document.getElementById(id);
+        if (canvas == null) return !1;
+        var context = canvas.getContext("2d");
+        //fillStyle默认为：fillStyle=black 实心
+        context.fillRect(0, 0, 100, 100);
+        //strokeStyle默认为：strokeStyle=black  空心
+        context.strokeRect(120, 0, 100, 100);
+        //设置纯色
+        context.fillStyle = "red";
+        context.strokeStyle = "blue";
+        context.fillRect(0, 120, 100, 100);
+        context.strokeRect(120, 120, 100, 100);
+        //设置透明度 rgba(255,255,255,1)
+        context.fillStyle = "rgba(255,0,0,0.2)";
+        context.strokeStyle = "rgba(255,0,0,0.2)";
+        context.fillRect(240, 0, 100, 100);
+        context.strokeRect(240, 120, 100, 100);
+        //清楚区域
+        context.clearRect(50, 50, 240, 120);
+    };
+    canvas("ellipse");
+    </script>
+
+</body>
+</html>

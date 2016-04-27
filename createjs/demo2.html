@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400" style="background-color:#ccc;"></canvas>
+    <script src="../js/createjs/easeljs-NEXT.combined.js"></script>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var stage = new createjs.Stage(canvas);
+        var container = new createjs.Container();
+
+        var shape1 = new createjs.Shape();
+        shape1.graphics.beginFill("#956788").beginStroke("#fff").setStrokeStyle(4).moveTo(0, 0).lineTo(canvas.width * .5, 0).lineTo(canvas.width * .4, canvas.height * .4).lineTo(0, canvas.height * .6).closePath();
+
+
+        var shape2 = new createjs.Shape();
+        shape2.graphics.beginFill("#c7d5ee").beginStroke("#fff").setStrokeStyle(4).moveTo(canvas.width * .5, 0).lineTo(canvas.width, 0).lineTo(canvas.width, canvas.height * .4).lineTo(canvas.width * .4, canvas.height * .4).closePath();
+
+        var shape3 = new createjs.Shape();
+        shape3.graphics.beginFill("#f8c9d9").beginStroke("#fff").setStrokeStyle(4).moveTo(0, canvas.height * .6).lineTo(canvas.width * .4, canvas.height * .4).lineTo(canvas.width * .5, canvas.height).lineTo(0, canvas.height).closePath();
+
+        var shape4 = new createjs.Shape();
+        shape4.graphics.beginFill("#567004").beginStroke("#fff").setStrokeStyle(4).moveTo(canvas.width * .4, canvas.height * .4).lineTo(canvas.width, canvas.height * .4).lineTo(canvas.width, canvas.height).lineTo(canvas.width * .5, canvas.height).closePath();
+        
+        var shape5 = new createjs.Shape();
+        shape5.graphics.beginFill("pink").beginStroke("#fff").setStrokeStyle(4).drawCircle(canvas.width * .5, canvas.height * .5, 150).closePath();
+        container.addChild(shape1, shape2, shape3, shape4);
+        stage.addChild(container);
+
+        stage.update();
+    </script>
+</body>
+</html>

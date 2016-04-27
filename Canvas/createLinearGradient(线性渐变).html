@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <style type="text/css">
+    </style>
+
+</head>
+<body>
+    <canvas id="ellipse" width="600" height="600"></canvas>
+    <script type="text/javascript">
+        function canvas(id) {
+            var canvas = document.getElementById(id);
+            if (canvas == null) return !1;
+            var context = canvas.getContext("2d");
+            var g1 = context.createLinearGradient(0, 0, 0, 300);
+            g1.addColorStop(0, 'rgb(255,0,0)');
+            g1.addColorStop(0.5, 'rgb(0,255,0)');
+            g1.addColorStop(1, 'rgb(0,0,255)');
+            context.fillStyle = g1;
+            context.fillRect(0, 0, 400, 300);
+        };
+        canvas("ellipse");
+    </script>
+
+</body>
+</html>

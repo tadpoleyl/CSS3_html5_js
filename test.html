@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+</head>
+<body id="bodys">
+
+<script src="js/jquery-1.9.0.js"></script>
+<script>
+    function aaa(){
+        var _this=this;
+        _this.bbb=function aa(){
+            console.log(eval($(this).attr("data")));
+        };
+        var sss=[{
+            id:'1',
+            name:'ss'
+        },{
+            id:'1',
+            name:'ss'
+        },{
+            id:'1',
+            name:'ss'
+        }];
+        var s=JSON.stringify(sss);
+        $("body").append("<a href=\"javascript:;\" data='"+s+"'>sssss</a>");
+        $("a").on("click",_this.bbb);
+    }
+    aaa();
+</script>
+</body>
+</html>

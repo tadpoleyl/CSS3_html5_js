@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <style type="text/css">
+    </style>
+
+</head>
+<body>
+    <canvas id="ellipse" width="600" height="600"></canvas>
+    <script type="text/javascript">
+        function canvas(id) {
+            var canvas = document.getElementById(id);
+            if (canvas == null) return !1;
+            var context = canvas.getContext("2d");
+            //开始绘图
+            context.beginPath();
+            //context.arc(x轴坐标(圆心的x坐标),y轴坐标(圆心的y坐标),圆的半径,起始角度,结束角度,是否逆时针(true:逆时针;false:顺时针));//默认是顺时针
+            context.arc(200, 150, 100, 0, Math.PI * 2,true);
+            //不关闭路径路径会一直保留下去，当然也可以利用这个特点做出意想不到的效果
+            context.closePath();
+            context.fillStyle = "blue";
+            context.fill();
+        };
+        canvas("ellipse");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400" style="background-color:#000000"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        context.fillStyle = "pink";
+        context.beginPath();
+        context.arc(150, 150, 100, 0, Math.PI * 2, true);
+        context.closePath();
+        context.fill();
+        //context.globalAlpha = 0.2;//设置透明度
+        context.globalCompositeOperation = "source-out";//上面是目标头像  下面是源头像
+        context.fillStyle = "red";
+        context.beginPath();
+        context.arc(200, 200, 100, 0, Math.PI * 2, true);
+        context.closePath();
+        context.fill();
+    </script>
+</body>
+</html>

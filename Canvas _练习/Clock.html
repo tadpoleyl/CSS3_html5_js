@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="clock" width="400" height="400"></canvas>
+    <script src="../js/jquery-1.9.0.js"></script>
+    <script type="text/javascript">
+        function canvasClock(id) {
+            var canvas = document.getElementById(id);
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, 400, 400);
+            //绘制圆
+            context.strokeStyle = "purple";
+            context.beginPath();
+            context.arc(150, 150, 100, 0, Math.PI * 2, true);
+            context.closePath();
+            context.stroke();
+            //绘制分钟刻度
+            for (var i = 0; i < 60; i++) {
+                if (i % 5 == 0) {
+                    continue;
+                }
+                context.save();
+                context.lineWidth = 1;
+                context.strokeStyle = "#000";
+                context.translate(150, 150);
+                context.rotate(i * 6 * Math.PI / 180);
+                context.beginPath();
+                context.moveTo(0, -100);
+                context.lineTo(0,-90);
+                context.closePath();
+                context.stroke();
+                context.restore();
+            };
+            //绘制时钟刻度
+            for (var i = 0; i < 12; i++) {
+                context.save();
+                context.lineWidth = 2;
+                context.strokeStyle = "#000";
+                context.translate(150, 150);
+                context.rotate(i * 30 * Math.PI / 180);
+                context.beginPath();
+                context.moveTo(0, -100);
+                context.lineTo(0, -85);
+                context.closePath();
+                context.stroke();
+                context.restore();
+            };
+            var date = new Date();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var sec = date.getSeconds();
+            hour = hour + minutes / 60;
+            hour = hour > 12 ? hour - 12 : hour;
+            //时钟线
+            context.save();
+            context.lineWidth = 5;
+            context.strokeStyle = "#4cff00";
+            context.translate(150, 150);
+            context.rotate(hour * 30 * Math.PI / 180);
+            context.beginPath();
+            context.moveTo(0,-70);
+            context.lineTo(0, 10);
+            context.closePath();
+            context.stroke();
+            context.restore();
+
+            //分钟线
+            context.save();
+            context.lineWidth = 3;
+            context.strokeStyle = "#b200ff";
+            context.translate(150, 150);
+            context.rotate(minutes * 6 * Math.PI / 180);
+            context.beginPath();
+            context.moveTo(0, -80);
+            context.lineTo(0, 10);
+            context.closePath();
+            context.stroke();
+            context.restore();
+
+            //秒钟线
+            context.save();
+            context.lineWidth = 1.5;
+            context.strokeStyle = "#ff00dc";
+            context.translate(150, 150);
+            context.rotate(sec * 6 * Math.PI / 180);
+            context.beginPath();
+            context.moveTo(0, -90);
+            context.lineTo(0, 10);
+            context.closePath();
+            context.stroke();
+            context.restore();
+        };
+        setInterval(function () {
+            canvasClock("clock");
+        }, 1000);
+    </script>
+</body>
+</html>

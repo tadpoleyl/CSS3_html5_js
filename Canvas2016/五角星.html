@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body{
+            text-align: center;
+        }
+        #canvas{
+            border:1px solid #ccc;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width=600" height="600"></canvas>
+<script type="text/javascript">
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext("2d");
+    var r=50;
+
+    context.beginPath();
+    for(var i=0;i<5;i++) {
+        context.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * r + 300, -Math.sin((18 + i * 72) / 180 * Math.PI) * r + 300);
+        context.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) * (r / 2) + 300, -Math.sin((54 + i * 72) / 180 * Math.PI) * (r / 2) + 300);
+    }
+    context.strokeStyle="red";
+    context.lineWidth=4;
+    context.closePath();
+    context.stroke();
+
+</script>
+</body>
+</html>
